@@ -27,7 +27,7 @@ namespace ПР8.Гладиаторы
             };
         }
 
-        internal void HireGladiators(string name)
+        internal void HireGladiator(string name)
         {
             gladiators.Add(new Gladiator(name));
         }
@@ -39,9 +39,9 @@ namespace ПР8.Гладиаторы
             Console.WriteLine($"Гладиатор {gladiator.Name} восстановил свое здоровье.");
         }
 
-        internal void VisitStore(Store store, Gladiator gladiator)
+        internal void VisitTheStore(Store store, Gladiator gladiator)
         {
-            store.Goods(gladiator);
+            store.Assortment(gladiator);
         }
 
         internal static void BuyArmor(Gladiator gladiator, Armor armor)

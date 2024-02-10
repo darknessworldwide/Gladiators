@@ -10,10 +10,7 @@ namespace ПР8.Гладиаторы
     {
         static void Main(string[] args)
         {
-            Player player = new Player();
-            Store store = new Store();
 
-            store.Goods();
 
             Console.ReadKey();
         }
