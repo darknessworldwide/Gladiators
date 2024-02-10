@@ -12,6 +12,7 @@ namespace ПР8.Гладиаторы
         {
             Player player = new Player();
             Store store = new Store();
+
             store.Goods();
 
             Console.ReadKey();
