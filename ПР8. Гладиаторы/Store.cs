@@ -32,23 +32,40 @@ namespace ПР8.Гладиаторы
             };
         }
 
-        internal void Goods()
+        internal void Assortment(Gladiator gladiator)
         {
+            int idx;
             Console.WriteLine("Добро пожаловать в оружейную лавку!\n1) Выбрать доспехи\n2) Выбрать оружие\n3) Покинуть оружейную лавку\n");
-            string option = Console.ReadLine();
-            switch (option)
+            switch (Console.ReadLine())
             {
                 case "1":
                     Console.WriteLine("Доспехи:");
-                    for (int i = 0; i < armors.Length; i++) { Console.WriteLine($"{i + 1}) {armors[i].Name}, {armors[i].Price} (множитель защиты = {armors[i].Protection})"); }
+                    for (int i = 0; i < armors.Length; i++)
+                    {
+                        Console.WriteLine($"{i + 1}) {armors[i].Name}, {armors[i].Price} (множитель защиты = {armors[i].Protection})");
+                    }
                     Console.WriteLine($"{armors.Length + 1}) Вернуться назад\n");
+
+                    idx = int.Parse(Console.ReadLine());
+                    if (idx > armors.Length) break;
+                    Player.BuyArmor(gladiator, armors[idx - 1]);
                     break;
+
                 case "2":
                     Console.WriteLine("Оружие:");
-                    for (int i = 0; i < weapons.Length; i++) { Console.WriteLine($"{i + 1}) {weapons[i].Name}, {weapons[i].Price} (урон = {weapons[i].Damage})"); }
+                    for (int i = 0; i < weapons.Length; i++)
+                    {
+                        Console.WriteLine($"{i + 1}) {weapons[i].Name}, {weapons[i].Price} (урон = {weapons[i].Damage})");
+                    }
                     Console.WriteLine($"{weapons.Length + 1}) Вернуться назад\n");
+
+                    idx = int.Parse(Console.ReadLine());
+                    if (idx > weapons.Length) break;
+                    Player.BuyWeapon(gladiator, weapons[idx - 1]);
                     break;
-                default: break;
+
+                default:
+                    break;
             }
         }
     }

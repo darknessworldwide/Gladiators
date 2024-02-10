@@ -8,7 +8,7 @@ namespace ПР8.Гладиаторы
 {
     internal class Player
     {
-        int money;
+        static int money;
         int glory;
         List<Gladiator> gladiators;
 
@@ -18,15 +18,18 @@ namespace ПР8.Гладиаторы
             glory = 0;
             gladiators = new List<Gladiator>()
             {
-                new Gladiator("Ваныш1"),
-                new Gladiator("Ваныш2"),
-                new Gladiator("Ваныш3")
+                new Gladiator("Аурелиан Железный Клинок"),
+                new Gladiator("Северус Кровавый Гром"),
+                new Gladiator("Леонид Сокрушитель"),
+                new Gladiator("Максимус Безжалостный"),
+                new Gladiator("Валерий Череполом"),
+                new Gladiator("Артемий Молотильщик")
             };
         }
 
-        internal void HireGladiators(int number)
+        internal void HireGladiator(string name)
         {
-            for (int i = 0; i < number; i++) { gladiators.Add(new Gladiator("Григорий")); }
+            gladiators.Add(new Gladiator(name));
         }
 
         internal void Heal(Gladiator gladiator)
@@ -34,6 +37,37 @@ namespace ПР8.Гладиаторы
             gladiator.Health = 100;
             money -= 100;
             Console.WriteLine($"Гладиатор {gladiator.Name} восстановил свое здоровье.");
+        }
+
+        internal void VisitTheStore(Store store, Gladiator gladiator)
+        {
+            store.Assortment(gladiator);
+        }
+
+        internal static void BuyArmor(Gladiator gladiator, Armor armor)
+        {
+            if (money < armor.Price)
+            {
+                Console.WriteLine($"У вас недостаточно монет для покупки {armor.Name} для гладиатора {gladiator.Name}.");
+                return;
+            }
+
+            money -= armor.Price;
+            gladiator.Armor = armor;
+            Console.WriteLine($"Вы купили {armor.Name} для гладиатора {gladiator.Name} за {armor.Price} монет.");
+        }
+
+        internal static void BuyWeapon(Gladiator gladiator, Weapon weapon)
+        {
+            if (money < weapon.Price)
+            {
+                Console.WriteLine($"У вас недостаточно монет для покупки {weapon.Name} для гладиатора {gladiator.Name}.");
+                return;
+            }
+
+            money -= weapon.Price;
+            gladiator.Weapon = weapon;
+            Console.WriteLine($"Вы купили {weapon.Name} для гладиатора {gladiator.Name} за {weapon.Price} монет.");
         }
     }
 }
