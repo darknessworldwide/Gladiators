@@ -15,22 +15,27 @@ namespace ПР8.Гладиаторы
         {
             armors = new Armor[]
             {
-                new Armor("Кожаные", 200, 1.2),
-                new Armor("Кольчуга", 500, 1.5),
-                new Armor("Латные", 750, 1.75)
+                new Armor("Кожанная броня", 70, 1.3),
+                new Armor("Пластинчатый доспех", 120, 1.8),
+                new Armor("Латы", 180, 2.2),
+                new Armor("Кольчуга", 90, 1.6),
+                new Armor("Шлем", 40, 1.1),
+                new Armor("Бригантина", 100, 1.7)
             };
 
             weapons = new Weapon[]
             {
-                new Weapon("Короткий меч", 100, 30),
-                new Weapon("Копье", 50, 40),
-                new Weapon("Топор", 130, 40)
+                new Weapon("Копье", 35, 60),
+                new Weapon("Палица", 25, 45),
+                new Weapon("Клинок с кинжалом", 28, 55),
+                new Weapon("Алебарда", 40, 70),
+                new Weapon("Молот бога", 50, 100)
             };
         }
 
         internal void Goods()
         {
-            Console.WriteLine("Добро пожаловать в мастерскую!\n1) Выбрать доспехи\n2) Выбрать оружие\n3) Покинуть мастерскую\n");
+            Console.WriteLine("Добро пожаловать в оружейную лавку!\n1) Выбрать доспехи\n2) Выбрать оружие\n3) Покинуть оружейную лавку\n");
             string option = Console.ReadLine();
             if (option == "1")
             {
