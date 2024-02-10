@@ -32,7 +32,7 @@ namespace ПР8.Гладиаторы
             };
         }
 
-        internal void Goods()
+        internal void Goods(Gladiator gladiator)
         {
             Console.WriteLine("Добро пожаловать в оружейную лавку!\n1) Выбрать доспехи\n2) Выбрать оружие\n3) Покинуть оружейную лавку\n");
             int idx;
@@ -47,9 +47,10 @@ namespace ПР8.Гладиаторы
                     }
                     Console.WriteLine($"{armors.Length + 1}) Вернуться назад\n");
 
-                    idx = int.Parse( Console.ReadLine() );  
+                    idx = int.Parse(Console.ReadLine());
                     if (idx > armors.Length) break;
-                    // купить броню(броню[индекс])
+
+                    Player.BuyArmor(gladiator, armors[idx]);
                     break;
 
                 case "2":
@@ -62,7 +63,8 @@ namespace ПР8.Гладиаторы
 
                     idx = int.Parse(Console.ReadLine());
                     if (idx > weapons.Length) break;
-                    // купить оружие(оружие[индекс])
+
+                    Player.BuyWeapon(gladiator, weapons[idx]);
                     break;
 
                 default:

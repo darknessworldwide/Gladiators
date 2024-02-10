@@ -8,7 +8,7 @@ namespace ПР8.Гладиаторы
 {
     internal class Player
     {
-        int money;
+        static int money;
         int glory;
         List<Gladiator> gladiators;
 
@@ -39,7 +39,12 @@ namespace ПР8.Гладиаторы
             Console.WriteLine($"Гладиатор {gladiator.Name} восстановил свое здоровье.");
         }
 
-        internal void BuyArmor(Gladiator gladiator, Armor armor)
+        internal void VisitStore(Store store, Gladiator gladiator)
+        {
+            store.Goods(gladiator);
+        }
+
+        internal static void BuyArmor(Gladiator gladiator, Armor armor)
         {
             if (money < armor.Price)
             {
@@ -52,7 +57,7 @@ namespace ПР8.Гладиаторы
             Console.WriteLine($"Вы купили {armor.Name} для гладиатора {gladiator.Name} за {armor.Price} монет.");
         }
 
-        internal void BuyWeapon(Gladiator gladiator, Weapon weapon)
+        internal static void BuyWeapon(Gladiator gladiator, Weapon weapon)
         {
             if (money < weapon.Price)
             {
