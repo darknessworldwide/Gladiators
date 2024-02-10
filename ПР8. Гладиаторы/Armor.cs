@@ -18,5 +18,10 @@ namespace ПР8.Гладиаторы
             Price = price;
             Protection = protection;
         }
+
+        internal string Info()
+        {
+            return $"{Name}, множитель защиты = {Protection}. Цена: {Price} монет";
+        }
     }
 }

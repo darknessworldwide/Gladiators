@@ -18,5 +18,10 @@ namespace ПР8.Гладиаторы
             Health = 100;
             Damage = damage;
         }
+
+        internal string Info()
+        {
+            return $"{Name}, урон = {Damage}";
+        }
     }
 }
