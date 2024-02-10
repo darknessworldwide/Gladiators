@@ -16,18 +16,17 @@ namespace ПР8.Гладиаторы
             armors = new Armor[]
             {
                 new Armor("Кожанная броня", 70, 1.3),
-                new Armor("Пластинчатый доспех", 120, 1.8),
-                new Armor("Латы", 180, 2.2),
                 new Armor("Кольчуга", 90, 1.6),
-                new Armor("Шлем", 40, 1.1),
-                new Armor("Бригантина", 100, 1.7)
+                new Armor("Бригантина", 100, 1.7),
+                new Armor("Пластинчатый доспех", 120, 1.8),
+                new Armor("Латы", 180, 2.2)
             };
 
             weapons = new Weapon[]
             {
-                new Weapon("Копье", 35, 60),
                 new Weapon("Палица", 25, 45),
                 new Weapon("Клинок с кинжалом", 28, 55),
+                new Weapon("Копье", 35, 60),
                 new Weapon("Алебарда", 40, 70),
                 new Weapon("Молот бога", 50, 100)
             };
@@ -37,17 +36,19 @@ namespace ПР8.Гладиаторы
         {
             Console.WriteLine("Добро пожаловать в оружейную лавку!\n1) Выбрать доспехи\n2) Выбрать оружие\n3) Покинуть оружейную лавку\n");
             string option = Console.ReadLine();
-            if (option == "1")
+            switch (option)
             {
-                Console.WriteLine("Доспехи:");
-                for (int i = 0; i < armors.Length; i++) { Console.WriteLine($"{i + 1}) {armors[i].Name}, {armors[i].Price} (множитель защиты = {armors[i].Protection})"); }
-                Console.WriteLine($"{armors.Length + 1}) Вернуться назад\n");
-            }
-            else if (option == "2")
-            {
-                Console.WriteLine("Оружие:");
-                for (int i = 0; i < weapons.Length; i++) { Console.WriteLine($"{i + 1}) {weapons[i].Name}, {weapons[i].Price} (урон = {weapons[i].Damage})"); }
-                Console.WriteLine($"{weapons.Length + 1}) Вернуться назад\n");
+                case "1":
+                    Console.WriteLine("Доспехи:");
+                    for (int i = 0; i < armors.Length; i++) { Console.WriteLine($"{i + 1}) {armors[i].Name}, {armors[i].Price} (множитель защиты = {armors[i].Protection})"); }
+                    Console.WriteLine($"{armors.Length + 1}) Вернуться назад\n");
+                    break;
+                case "2":
+                    Console.WriteLine("Оружие:");
+                    for (int i = 0; i < weapons.Length; i++) { Console.WriteLine($"{i + 1}) {weapons[i].Name}, {weapons[i].Price} (урон = {weapons[i].Damage})"); }
+                    Console.WriteLine($"{weapons.Length + 1}) Вернуться назад\n");
+                    break;
+                default: break;
             }
         }
     }
