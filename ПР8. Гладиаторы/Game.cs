@@ -11,7 +11,9 @@ namespace ПР8.Гладиаторы
         int money;
         int glory;
         Store store;
-        List<Gladiator> gladiators;
+        internal List<Gladiator> MyGladiators { get; }
+        List<Gladiator> hiredGladiators;
+        List<Gladiator> opponents;
         List<Beast> beasts;
 
         internal Game()
@@ -19,11 +21,20 @@ namespace ПР8.Гладиаторы
             money = 100000;
             glory = 0;
             store = new Store();
-            gladiators = new List<Gladiator>()
+            MyGladiators = new List<Gladiator>()
+            {
+                new Gladiator("Григорий Дуболом")
+            };
+
+            hiredGladiators = new List<Gladiator>()
             {
                 new Gladiator("Аурелиан Железный Клинок"),
                 new Gladiator("Северус Кровавый Гром"),
-                new Gladiator("Леонид Сокрушитель"),
+                new Gladiator("Леонид Сокрушитель")
+            };
+
+            opponents = new List<Gladiator>()
+            {
                 new Gladiator("Максимус Безжалостный"),
                 new Gladiator("Валерий Череполом"),
                 new Gladiator("Артемий Молотильщик")
@@ -38,13 +49,13 @@ namespace ПР8.Гладиаторы
             };
         }
 
-        internal void ShowGladiators()
+        internal void ShowGladiators(List<Gladiator> gladiators)
         {
-            Console.WriteLine("Ваши гладиаторы:\n");
             for (int i = 0; i < gladiators.Count; i++)
             {
                 Console.WriteLine($"{i + 1}) {gladiators[i].Info()}\n");
-            }    
+            }
+            Console.WriteLine($"{gladiators.Count + 1}) Вернуться назад\n");
         }
 
         internal void ShowBeasts()
@@ -57,110 +68,99 @@ namespace ПР8.Гладиаторы
             Console.WriteLine();
         }
 
-        internal void HireGladiator(string name)
+        internal void HireGladiator()
         {
-            int hiringCost = 300;
+            int cost = 300;
 
-            if (money < hiringCost)
-            {
-                Console.WriteLine("У вас недостаточно монет для найма гладиатора!\n");
-                return;
-            }
+            Console.WriteLine($"Какого гладиатора нанять? У вас {money} монет\n");
+            ShowGladiators(hiredGladiators);
 
-            money -= hiringCost;
-            gladiators.Add(new Gladiator(name));
-            Console.WriteLine($"Вы наняли гладиатора {name} за {hiringCost} монет!\n");
+            string input = Console.ReadLine();
+            if (Error(input)) return;
+            int option = int.Parse(input);
+
+            if (option == hiredGladiators.Count + 1) return;
+
+            if (NotEnoughMoney(cost)) return;
+
+            money -= cost;
+            MyGladiators.Add(hiredGladiators[option - 1]);
+            hiredGladiators.RemoveAt(option - 1);
+            Console.WriteLine($"Вы наняли гладиатора {hiredGladiators[option - 1].Name} за {cost} монет!\n");
         }
 
         internal void HealGladiator(Gladiator gladiator)
         {
-            int healingCost = 100;
+            int cost = 100;
 
-            if (money < healingCost)
-            {
-                Console.WriteLine("У вас недостаточно монет для лечения гладиатора!\n");
-                return;
-            }
+            if (NotEnoughMoney(cost)) return;
 
-            money -= healingCost;
+            money -= cost;
             gladiator.Health = 100;
-            Console.WriteLine($"Вы исцелили гладиатора {gladiator.Name} за {healingCost} монет!\n");
+            Console.WriteLine($"Вы исцелили гладиатора {gladiator.Name} за {cost} монет!\n");
         }
 
         internal void VisitTheStore()
         {
-            Console.WriteLine($"Добро пожаловать в оружейную лавку! У вас {money} монет");
+            Console.WriteLine($"Добро пожаловать в оружейную лавку! У вас {money} монет\n");
             Console.WriteLine("1) Выбрать доспехи\n2) Выбрать оружие\n3) Покинуть оружейную лавку\n");
 
+            string input;
             int gladiatorOption;
             switch (Console.ReadLine())
             {
                 case "1":
                     store.ShowArmors();
-                    Console.WriteLine($"{store.Armors.Length + 1}) Вернуться назад\n");
 
-                    if (!int.TryParse(Console.ReadLine(), out int armorOption) || armorOption < 1 || armorOption > store.Armors.Length + 1)
-                    {
-                        Console.WriteLine("Некорректный выбор!\n");
-                        break;
-                    }
+                    input = Console.ReadLine();
+                    if (Error(input)) break;
+                    int armorOption = int.Parse(input);   
+
                     if (armorOption == store.Armors.Length + 1) break;
 
-                    Console.WriteLine("Какому гладиатору купить?");
-                    ShowGladiators();
-                    Console.WriteLine($"{gladiators.Count + 1}) Вернуться назад\n");
+                    Console.WriteLine("Какому гладиатору купить?\n");
+                    ShowGladiators(MyGladiators);
 
-                    if (!int.TryParse(Console.ReadLine(), out gladiatorOption) || gladiatorOption < 1 || gladiatorOption > gladiators.Count + 1)
-                    {
-                        Console.WriteLine("Некорректный выбор!\n");
-                        break;
-                    }
-                    if (gladiatorOption == gladiators.Count + 1) break;
+                    input = Console.ReadLine();
+                    if (Error(input)) break;
+                    gladiatorOption = int.Parse(input);
 
-                    BuyArmor(gladiators[gladiatorOption - 1], store.Armors[armorOption - 1]);
+                    if (gladiatorOption == MyGladiators.Count + 1) break;
+
+                    BuyArmor(MyGladiators[gladiatorOption - 1], store.Armors[armorOption - 1]);
                     break;
 
                 case "2":
                     store.ShowWeapons();
-                    Console.WriteLine($"{store.Weapons.Length + 1}) Вернуться назад\n");
 
-                    if (!int.TryParse(Console.ReadLine(), out int weaponOption) || weaponOption < 1 || weaponOption > store.Weapons.Length + 1)
-                    {
-                        Console.WriteLine("Некорректный выбор!\n");
-                        break;
-                    }
-                    if (weaponOption == store.Weapons.Length + 1) break;
+                    input = Console.ReadLine();
+                    if (Error(input)) break;
+                    int weaponOption = int.Parse(input);
 
-                    Console.WriteLine("Какому гладиатору купить?");
-                    ShowGladiators();
-                    Console.WriteLine($"{gladiators.Count + 1}) Вернуться назад\n");
+                    Console.WriteLine("Какому гладиатору купить?\n");
+                    ShowGladiators(MyGladiators);
 
-                    if (!int.TryParse(Console.ReadLine(), out gladiatorOption) || gladiatorOption < 1 || gladiatorOption > gladiators.Count + 1)
-                    {
-                        Console.WriteLine("Некорректный выбор!\n");
-                        break;
-                    }
-                    if (gladiatorOption == gladiators.Count + 1) break;
+                    input = Console.ReadLine();
+                    if (Error(input)) break;
+                    gladiatorOption = int.Parse(input);
 
-                    BuyWeapon(gladiators[gladiatorOption - 1], store.Weapons[weaponOption - 1]);
+                    if (gladiatorOption == MyGladiators.Count + 1) break;
+
+                    BuyWeapon(MyGladiators[gladiatorOption - 1], store.Weapons[weaponOption - 1]);
                     break;
 
                 case "3":
                     break;
 
                 default:
-                    Console.WriteLine("Некорректный выбор!\n");
+                    Console.WriteLine("Такого выбора нет!\n");
                     break;
             }
         }
 
         internal void BuyArmor(Gladiator gladiator, Armor armor)
         {
-            if (money < armor.Price)
-            {
-                Console.WriteLine($"У вас недостаточно монет для покупки {armor.Name} для гладиатора {gladiator.Name}!\n");
-                return;
-            }
+            if (NotEnoughMoney(armor.Price)) return;
 
             money -= armor.Price;
             gladiator.Armor = armor;
@@ -169,15 +169,31 @@ namespace ПР8.Гладиаторы
 
         internal void BuyWeapon(Gladiator gladiator, Weapon weapon)
         {
-            if (money < weapon.Price)
-            {
-                Console.WriteLine($"У вас недостаточно монет для покупки {weapon.Name} для гладиатора {gladiator.Name}!\n");
-                return;
-            }
+            if (NotEnoughMoney(weapon.Price)) return;
 
             money -= weapon.Price;
             gladiator.Weapon = weapon;
             Console.WriteLine($"Вы купили {weapon.Name} для гладиатора {gladiator.Name} за {weapon.Price} монет!\n");
+        }
+
+        internal bool NotEnoughMoney(int cost)
+        {
+            if (money < cost)
+            {
+                Console.WriteLine("У вас недостаточно монет!\n");
+                return true;
+            }
+            return false;
+        }
+
+        internal bool Error(string input)
+        {
+            if (!int.TryParse(input, out int option) || option < 1 || option > store.Armors.Length + 1)
+            {
+                Console.WriteLine("Такого выбора нет!\n");
+                return true;
+            }
+            return false;
         }
     }
 }

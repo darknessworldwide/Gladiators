@@ -34,20 +34,22 @@ namespace ПР8.Гладиаторы
 
         internal void ShowArmors()
         {
-            Console.WriteLine("Доспехи:");
+            Console.WriteLine("Доспехи:\n");
             for (int i = 0; i < Armors.Length; i++)
             {
                 Console.WriteLine($"{i + 1}) {Armors[i].Info()}. Цена: {Armors[i].Price} монет");
             }
+            Console.WriteLine($"{Armors.Length + 1}) Вернуться назад\n");
         }
 
         internal void ShowWeapons()
         {
-            Console.WriteLine("Оружия:");
+            Console.WriteLine("Оружия:\n");
             for (int i = 0; i < Weapons.Length; i++)
             {
                 Console.WriteLine($"{i + 1}) {Weapons[i].Info()}. Цена: {Weapons[i].Price} монет");
             }
+            Console.WriteLine($"{Weapons.Length + 1}) Вернуться назад\n");
         }
     }
 }
