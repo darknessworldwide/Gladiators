@@ -85,8 +85,8 @@ namespace ПР8.Гладиаторы
 
             money -= cost;
             MyGladiators.Add(hiredGladiators[option - 1]);
-            hiredGladiators.RemoveAt(option - 1);
             Console.WriteLine($"Вы наняли гладиатора {hiredGladiators[option - 1].Name} за {cost} монет!\n");
+            hiredGladiators.RemoveAt(option - 1);
         }
 
         internal void HealGladiator(Gladiator gladiator)
