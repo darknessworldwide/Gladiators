@@ -11,7 +11,7 @@ namespace ПР8.Гладиаторы
         static void Main(string[] args)
         {
             Game game = new Game();
-            BattleSystem battleSystem = new BattleSystem(game);
+            BattleSystem battleSystem = new BattleSystem();
 
             game.HireGladiator();
             game.VisitTheStore();

@@ -8,51 +8,49 @@ namespace ПР8.Гладиаторы
 {
     internal class BattleSystem : Game
     {
-        internal BattleSystem(Game game) : base() 
-        {
-            MyGladiators = game.MyGladiators;
-            opponents = game.opponents;
-            beasts = game.beasts;
-        }
-
         internal void StartBattle()
         {
-            Console.WriteLine("Выберите тип битвы:");
-            Console.WriteLine("1) Гладиатор vs Гладиатор\n2) Гладиатор vs Зверь\n3) Вернуться назад");
-
-            string input = Console.ReadLine();
-
-            switch (input)
+            bool flag = true;
+            do
             {
-                case "1":
-                    StartGladiatorBattle();
-                    break;
+                Console.WriteLine("Выберите тип битвы:");
+                Console.WriteLine("1) Гладиатор vs Гладиатор\n2) Гладиатор vs Зверь\n3) Вернуться назад\n");
 
-                case "2":
-                    StartBeastBattle();
-                    break;
+                switch (Console.ReadLine())
+                {
+                    case "1":
+                        StartGladiatorBattle();
+                        break;
 
-                case "3":
-                    break;
+                    case "2":
+                        StartBeastBattle();
+                        break;
 
-                default:
-                    Console.WriteLine("Такого выбора нет!");
-                    break;
-            }
+                    case "3":
+                        flag = false;
+                        break;
+
+                    default:
+                        Console.WriteLine("Неверный выбор. Попробуйте еще раз!\n");
+                        break;
+                }
+            } while (flag);
         }
 
         internal void StartGladiatorBattle()
         {
             Console.WriteLine("Выберите своего гладиатора:");
             ShowGladiators(MyGladiators);
-            int myGladiatorIdx = GetSelectedIndex(MyGladiators.Count);
+            int gladiatorOption = GetOption(MyGladiators.Count);
+            if (gladiatorOption == MyGladiators.Count + 1) return;
 
             Console.WriteLine("Выберите противника:");
-            ShowGladiators(opponents);
-            int opponentIdx = GetSelectedIndex(opponents.Count);
+            ShowGladiators(Opponents);
+            int opponentOption = GetOption(Opponents.Count);
+            if (opponentOption == Opponents.Count + 1) return;
 
-            Gladiator myGladiator = MyGladiators[myGladiatorIdx];
-            Gladiator opponent = opponents[opponentIdx];
+            Gladiator myGladiator = MyGladiators[gladiatorOption - 1];
+            Gladiator opponent = Opponents[opponentOption - 1];
 
             Console.WriteLine($"Битва начинается: {myGladiator.Name} vs {opponent.Name}");
             // создать метод Fight() и передавать туда гладиатора и соперника
@@ -62,34 +60,17 @@ namespace ПР8.Гладиаторы
         {
             Console.WriteLine("Выберите своего гладиатора:");
             ShowGladiators(MyGladiators);
-            int myGladiatorIdx = GetSelectedIndex(MyGladiators.Count);
+            int myGladiatorIdx = GetOption(MyGladiators.Count);
 
             Console.WriteLine("Выберите зверя:");
             ShowBeasts();
-            int beastIdx = GetSelectedIndex(beasts.Count);
+            int beastIdx = GetOption(Beasts.Count);
 
             Gladiator myGladiator = MyGladiators[myGladiatorIdx];
-            Beast beast = beasts[beastIdx];
+            Beast beast = Beasts[beastIdx];
 
             Console.WriteLine($"Битва начинается: {myGladiator.Name} vs {beast.Name}");
             // создать метод Fight() и передавать туда гладиатора и зверя
-        }
-
-        internal int GetSelectedIndex(int count)
-        {
-            int idx;
-            while (true)
-            {
-                if (!int.TryParse(Console.ReadLine(), out idx) || idx < 1 || idx > count)
-                {
-                    Console.WriteLine("Неверный выбор. Попробуйте снова:");
-                }
-                else
-                {
-                    break;
-                }
-            }
-            return idx - 1;
         }
     }
 }
