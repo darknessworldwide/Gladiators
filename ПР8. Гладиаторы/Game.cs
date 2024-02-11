@@ -11,10 +11,10 @@ namespace ПР8.Гладиаторы
         int money;
         int glory;
         Store store;
-        internal List<Gladiator> MyGladiators { get; }
-        List<Gladiator> hiredGladiators;
-        List<Gladiator> opponents;
-        List<Beast> beasts;
+        internal List<Gladiator> MyGladiators { get; set; }
+        internal List<Gladiator> hiredGladiators;
+        internal List<Gladiator> opponents;
+        internal List<Beast> beasts;
 
         internal Game()
         {

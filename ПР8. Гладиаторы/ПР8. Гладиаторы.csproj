@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Armor.cs" />
+    <Compile Include="BattleSystem.cs" />
     <Compile Include="Gladiator.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Program.cs" />
