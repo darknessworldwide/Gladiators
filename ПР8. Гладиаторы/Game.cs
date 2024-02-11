@@ -65,7 +65,7 @@ namespace ПР8.Гладиаторы
             {
                 Console.WriteLine($"{i + 1}) {beasts[i].Info()}");
             }
-            Console.WriteLine();
+            Console.WriteLine($"{beasts.Count + 1}) Вернуться назад\n");
         }
 
         internal void HireGladiator()
@@ -136,6 +136,8 @@ namespace ПР8.Гладиаторы
                     input = Console.ReadLine();
                     if (Error(input)) break;
                     int weaponOption = int.Parse(input);
+
+                    if (weaponOption == store.Weapons.Length + 1) break;
 
                     Console.WriteLine("Какому гладиатору купить?\n");
                     ShowGladiators(MyGladiators);
