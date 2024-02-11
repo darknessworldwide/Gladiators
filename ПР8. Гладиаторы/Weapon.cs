@@ -18,5 +18,10 @@ namespace ПР8.Гладиаторы
             Price = price;
             Damage = damage;
         }
+
+        internal string Info()
+        {
+            return $"{Name}, урон = {Damage}";
+        }
     }
 }

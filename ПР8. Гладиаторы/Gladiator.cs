@@ -20,5 +20,10 @@ namespace ПР8.Гладиаторы
             Armor = new Armor("Тканевая одежда", 0, 1);
             Weapon = new Weapon("Кулаки", 0, 10);
         }
+
+        internal string Info()
+        {
+            return $"{Name}, {Health} HP\n   Доспехи: {Armor.Info()}\n   Оружие: {Weapon.Info()}";
+        }
     }
 }

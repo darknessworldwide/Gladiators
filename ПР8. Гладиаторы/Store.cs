@@ -8,21 +8,21 @@ namespace ПР8.Гладиаторы
 {
     internal class Store
     {
-        Armor[] armors;
-        Weapon[] weapons;
+        internal Armor[] Armors { get; }
+        internal Weapon[] Weapons { get; }
 
         internal Store()
         {
-            armors = new Armor[]
+            Armors = new Armor[]
             {
-                new Armor("Кожанная броня", 70, 1.3),
+                new Armor("Кожаная броня", 70, 1.3),
                 new Armor("Кольчуга", 90, 1.6),
                 new Armor("Бригантина", 100, 1.7),
                 new Armor("Пластинчатый доспех", 120, 1.8),
                 new Armor("Латы", 180, 2.2)
             };
 
-            weapons = new Weapon[]
+            Weapons = new Weapon[]
             {
                 new Weapon("Палица", 25, 45),
                 new Weapon("Клинок с кинжалом", 28, 55),
@@ -32,40 +32,21 @@ namespace ПР8.Гладиаторы
             };
         }
 
-        internal void Assortment(Gladiator gladiator)
+        internal void ShowArmors()
         {
-            int idx;
-            Console.WriteLine("Добро пожаловать в оружейную лавку!\n1) Выбрать доспехи\n2) Выбрать оружие\n3) Покинуть оружейную лавку\n");
-            switch (Console.ReadLine())
+            Console.WriteLine("Доспехи:");
+            for (int i = 0; i < Armors.Length; i++)
             {
-                case "1":
-                    Console.WriteLine("Доспехи:");
-                    for (int i = 0; i < armors.Length; i++)
-                    {
-                        Console.WriteLine($"{i + 1}) {armors[i].Name}, {armors[i].Price} (множитель защиты = {armors[i].Protection})");
-                    }
-                    Console.WriteLine($"{armors.Length + 1}) Вернуться назад\n");
+                Console.WriteLine($"{i + 1}) {Armors[i].Info()}. Цена: {Armors[i].Price} монет");
+            }
+        }
 
-                    idx = int.Parse(Console.ReadLine());
-                    if (idx > armors.Length) break;
-                    Player.BuyArmor(gladiator, armors[idx - 1]);
-                    break;
-
-                case "2":
-                    Console.WriteLine("Оружие:");
-                    for (int i = 0; i < weapons.Length; i++)
-                    {
-                        Console.WriteLine($"{i + 1}) {weapons[i].Name}, {weapons[i].Price} (урон = {weapons[i].Damage})");
-                    }
-                    Console.WriteLine($"{weapons.Length + 1}) Вернуться назад\n");
-
-                    idx = int.Parse(Console.ReadLine());
-                    if (idx > weapons.Length) break;
-                    Player.BuyWeapon(gladiator, weapons[idx - 1]);
-                    break;
-
-                default:
-                    break;
+        internal void ShowWeapons()
+        {
+            Console.WriteLine("Оружия:");
+            for (int i = 0; i < Weapons.Length; i++)
+            {
+                Console.WriteLine($"{i + 1}) {Weapons[i].Info()}. Цена: {Weapons[i].Price} монет");
             }
         }
     }
