@@ -21,7 +21,7 @@ namespace ПР8.Гладиаторы
 
         internal string Info()
         {
-            return $"{Name}, урон = {Damage}. Цена: {Price} монет";
+            return $"{Name}, урон = {Damage}";
         }
     }
 }

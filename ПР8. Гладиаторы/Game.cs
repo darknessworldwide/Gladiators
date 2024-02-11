@@ -49,11 +49,12 @@ namespace ПР8.Гладиаторы
 
         internal void ShowBeasts()
         {
-            Console.WriteLine("Звери:\n");
+            Console.WriteLine("Звери:");
             for (int i = 0; i < beasts.Count; i++)
             {
-                Console.WriteLine($"{i + 1}) {beasts[i].Info()}\n");
+                Console.WriteLine($"{i + 1}) {beasts[i].Info()}");
             }
+            Console.WriteLine();
         }
 
         internal void HireGladiator(string name)
@@ -62,13 +63,13 @@ namespace ПР8.Гладиаторы
 
             if (money < hiringCost)
             {
-                Console.WriteLine("У вас недостаточно монет для найма гладиатора!");
+                Console.WriteLine("У вас недостаточно монет для найма гладиатора!\n");
                 return;
             }
 
             money -= hiringCost;
             gladiators.Add(new Gladiator(name));
-            Console.WriteLine($"Вы наняли гладиатора {name}!\n");
+            Console.WriteLine($"Вы наняли гладиатора {name} за {hiringCost} монет!\n");
         }
 
         internal void HealGladiator(Gladiator gladiator)
@@ -77,46 +78,54 @@ namespace ПР8.Гладиаторы
 
             if (money < healingCost)
             {
-                Console.WriteLine("У вас недостаточно денег для лечения гладиатора!");
+                Console.WriteLine("У вас недостаточно монет для лечения гладиатора!\n");
                 return;
             }
 
             money -= healingCost;
             gladiator.Health = 100;
-            Console.WriteLine($"Гладиатор {gladiator.Name} восстановил свое здоровье\n");
+            Console.WriteLine($"Вы исцелили гладиатора {gladiator.Name} за {healingCost} монет!\n");
         }
 
         internal void VisitTheStore()
         {
-            Console.WriteLine($"Добро пожаловать в оружейную лавку! У вас {money} монет.");
+            Console.WriteLine($"Добро пожаловать в оружейную лавку! У вас {money} монет");
             Console.WriteLine("1) Выбрать доспехи\n2) Выбрать оружие\n3) Покинуть оружейную лавку\n");
 
-            if (!int.TryParse(Console.ReadLine(), out int choice) || choice < 1 || choice > 3)
-            {
-                Console.WriteLine("Некорректный выбор! Введите номер опции (1, 2 или 3)");
-                return;
-            }
+            //if (!int.TryParse(Console.ReadLine(), out int option) || option < 1 || option > 3) // у нас же в свитче есть кейсы и дефолт
+            //{
+            //    Console.WriteLine("Некорректный выбор! Введите номер опции (1, 2 или 3)");
+            //    return;
+            //}
 
-            switch (choice)
+            switch (Console.ReadLine())
             {
-                case 1:
+                case "1":
                     store.ShowArmors();
-                    if (!int.TryParse(Console.ReadLine(), out int armorOption) || armorOption < 1 || armorOption > store.Armors.Length)
+                    Console.WriteLine($"{store.Armors.Length + 1}) Вернуться назад\n");
+
+                    if (!int.TryParse(Console.ReadLine(), out int armorOption) || armorOption < 1 || armorOption > store.Armors.Length + 1)
                     {
-                        Console.WriteLine("Некорректный выбор!");
+                        Console.WriteLine("Некорректный выбор!\n");
                         break;
                     }
-                    BuyArmor(gladiators[1], store.Armors[armorOption - 1]);
+                    if (armorOption == store.Armors.Length + 1) break;
+
+                    BuyArmor(gladiators[1], store.Armors[armorOption - 1]); // доделать выбор какому гладиатору купить
                     break;
 
-                case 2:
+                case "2":
                     store.ShowWeapons();
-                    if (!int.TryParse(Console.ReadLine(), out int weaponOption) || weaponOption < 1 || weaponOption > store.Weapons.Length)
+                    Console.WriteLine($"{store.Weapons.Length + 1}) Вернуться назад\n");
+
+                    if (!int.TryParse(Console.ReadLine(), out int weaponOption) || weaponOption < 1 || weaponOption > store.Weapons.Length + 1)
                     {
-                        Console.WriteLine("Некорректный выбор!");
+                        Console.WriteLine("Некорректный выбор!\n");
                         break;
                     }
-                    BuyWeapon(gladiators[1], store.Weapons[weaponOption - 1]);
+                    if (weaponOption == store.Weapons.Length + 1) break;
+
+                    BuyWeapon(gladiators[1], store.Weapons[weaponOption - 1]); // доделать выбор какому гладиатору купить
                     break;
 
                 default:

@@ -14,6 +14,7 @@ namespace ПР8.Гладиаторы
             game.HireGladiator("Григорий Дуболом");
             game.ShowGladiators();
             game.ShowBeasts();
+            game.VisitTheStore();
 
             Console.ReadKey();
         }

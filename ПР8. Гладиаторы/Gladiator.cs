@@ -23,7 +23,7 @@ namespace ПР8.Гладиаторы
 
         internal string Info()
         {
-            return $"{Name}, {Health} HP\n   Доспехи: {Armor.Name}, множитель защиты = {Armor.Protection}\n   Оружие: {Weapon.Name}, урон = {Weapon.Damage}";
+            return $"{Name}, {Health} HP\n   Доспехи: {Armor.Info()}\n   Оружие: {Weapon.Info()}";
         }
     }
 }
