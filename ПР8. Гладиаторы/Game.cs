@@ -92,12 +92,6 @@ namespace ПР8.Гладиаторы
             Console.WriteLine($"Добро пожаловать в оружейную лавку! У вас {money} монет");
             Console.WriteLine("1) Выбрать доспехи\n2) Выбрать оружие\n3) Покинуть оружейную лавку\n");
 
-            //if (!int.TryParse(Console.ReadLine(), out int option) || option < 1 || option > 3) // у нас же в свитче есть кейсы и дефолт
-            //{
-            //    Console.WriteLine("Некорректный выбор! Введите номер опции (1, 2 или 3)");
-            //    return;
-            //}
-
             int gladiatorOption;
             switch (Console.ReadLine())
             {
