@@ -12,9 +12,9 @@ namespace ПР8.Гладиаторы
         {
             Game game = new Game();
             game.HireGladiator("Григорий Дуболом");
-            game.ShowGladiators();
             game.ShowBeasts();
             game.VisitTheStore();
+            game.ShowGladiators();
 
             Console.ReadKey();
         }

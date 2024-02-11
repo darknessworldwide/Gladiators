@@ -98,6 +98,7 @@ namespace ПР8.Гладиаторы
             //    return;
             //}
 
+            int gladiatorOption;
             switch (Console.ReadLine())
             {
                 case "1":
@@ -111,7 +112,18 @@ namespace ПР8.Гладиаторы
                     }
                     if (armorOption == store.Armors.Length + 1) break;
 
-                    BuyArmor(gladiators[1], store.Armors[armorOption - 1]); // доделать выбор какому гладиатору купить
+                    Console.WriteLine("Какому гладиатору купить?");
+                    ShowGladiators();
+                    Console.WriteLine($"{gladiators.Count + 1}) Вернуться назад\n");
+
+                    if (!int.TryParse(Console.ReadLine(), out gladiatorOption) || gladiatorOption < 1 || gladiatorOption > gladiators.Count + 1)
+                    {
+                        Console.WriteLine("Некорректный выбор!\n");
+                        break;
+                    }
+                    if (gladiatorOption == gladiators.Count + 1) break;
+
+                    BuyArmor(gladiators[gladiatorOption - 1], store.Armors[armorOption - 1]);
                     break;
 
                 case "2":
@@ -125,10 +137,25 @@ namespace ПР8.Гладиаторы
                     }
                     if (weaponOption == store.Weapons.Length + 1) break;
 
-                    BuyWeapon(gladiators[1], store.Weapons[weaponOption - 1]); // доделать выбор какому гладиатору купить
+                    Console.WriteLine("Какому гладиатору купить?");
+                    ShowGladiators();
+                    Console.WriteLine($"{gladiators.Count + 1}) Вернуться назад\n");
+
+                    if (!int.TryParse(Console.ReadLine(), out gladiatorOption) || gladiatorOption < 1 || gladiatorOption > gladiators.Count + 1)
+                    {
+                        Console.WriteLine("Некорректный выбор!\n");
+                        break;
+                    }
+                    if (gladiatorOption == gladiators.Count + 1) break;
+
+                    BuyWeapon(gladiators[gladiatorOption - 1], store.Weapons[weaponOption - 1]);
+                    break;
+
+                case "3":
                     break;
 
                 default:
+                    Console.WriteLine("Некорректный выбор!\n");
                     break;
             }
         }
