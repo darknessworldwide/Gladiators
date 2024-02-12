@@ -8,8 +8,8 @@ namespace ПР8.Гладиаторы
 {
     internal class Game
     {
-        int money;
-        int glory;
+        internal int Money { get; set; }
+        internal int Glory { get; set; }
         Store store;
         internal List<Gladiator> MyGladiators { get; set; }
         internal List<Gladiator> HiredGladiators;
@@ -18,8 +18,8 @@ namespace ПР8.Гладиаторы
 
         internal Game()
         {
-            money = 100000;
-            glory = 0;
+            Money = 100000;
+            Glory = 0;
             store = new Store();
             MyGladiators = new List<Gladiator>()
             {
@@ -54,7 +54,7 @@ namespace ПР8.Гладиаторы
             bool flag = true;
             do
             {
-                Console.WriteLine($"Какого гладиатора нанять? У вас {money} монет\n");
+                Console.WriteLine($"Какого гладиатора нанять? У вас {Money} монет\n");
                 ShowGladiators(HiredGladiators);
 
                 int option = GetOption(HiredGladiators.Count);
@@ -68,7 +68,7 @@ namespace ПР8.Гладиаторы
                 int cost = 300;
                 if (NotEnoughMoney(cost)) return;
 
-                money -= cost;
+                Money -= cost;
                 MyGladiators.Add(HiredGladiators[option - 1]);
                 Console.WriteLine($"Вы наняли гладиатора {HiredGladiators[option - 1].Name} за {cost} монет!\n");
                 HiredGladiators.RemoveAt(option - 1);
@@ -80,7 +80,7 @@ namespace ПР8.Гладиаторы
             bool flag = true;
             do
             {
-                Console.WriteLine($"Какого гладиатора нанять? У вас {money} монет\n");
+                Console.WriteLine($"Какого гладиатора нанять? У вас {Money} монет\n");
                 ShowGladiators(HiredGladiators);
 
                 int option = GetOption(MyGladiators.Count);
@@ -94,7 +94,7 @@ namespace ПР8.Гладиаторы
                 int cost = 100;
                 if (NotEnoughMoney(cost)) return;
 
-                money -= cost;
+                Money -= cost;
                 MyGladiators[option - 1].Health = 100;
                 Console.WriteLine($"Вы исцелили гладиатора {MyGladiators[option - 1].Name} за {cost} монет!\n");
             } while (flag);
@@ -105,7 +105,7 @@ namespace ПР8.Гладиаторы
             bool flag = true;
             do
             {
-                Console.WriteLine($"Добро пожаловать в оружейную лавку! У вас {money} монет\n");
+                Console.WriteLine($"Добро пожаловать в оружейную лавку! У вас {Money} монет\n");
                 Console.WriteLine("1) Выбрать доспехи\n2) Выбрать оружие\n3) Покинуть оружейную лавку\n");
                 int gladiatorOption;
 
@@ -156,7 +156,7 @@ namespace ПР8.Гладиаторы
         {
             if (NotEnoughMoney(armor.Price)) return;
 
-            money -= armor.Price;
+            Money -= armor.Price;
             gladiator.Armor = armor;
             Console.WriteLine($"Вы купили {armor.Name} для гладиатора {gladiator.Name} за {armor.Price} монет!\n");
         }
@@ -165,14 +165,14 @@ namespace ПР8.Гладиаторы
         {
             if (NotEnoughMoney(weapon.Price)) return;
 
-            money -= weapon.Price;
+            Money -= weapon.Price;
             gladiator.Weapon = weapon;
             Console.WriteLine($"Вы купили {weapon.Name} для гладиатора {gladiator.Name} за {weapon.Price} монет!\n");
         }
 
         internal bool NotEnoughMoney(int cost)
         {
-            if (money < cost)
+            if (Money < cost)
             {
                 Console.WriteLine("У вас недостаточно монет!\n");
                 return true;
