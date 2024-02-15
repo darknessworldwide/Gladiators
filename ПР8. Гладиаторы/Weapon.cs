@@ -1,27 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ПР8.Гладиаторы
+﻿namespace ПР8.Гладиаторы
 {
-    internal class Weapon
+    class Weapon
     {
         internal string Name { get; }
-        internal int Price { get; }
         internal double Damage { get; }
+        internal int Price { get; }
 
-        internal Weapon(string name, int price, double damage)
+        internal Weapon(string name, double damage, int price)
         {
             Name = name;
-            Price = price;
             Damage = damage;
+            Price = price;
         }
 
-        internal string Info()
-        {
-            return $"{Name}, урон = {Damage}";
-        }
+        internal string Info() { return $"{Name}, урон = {Damage}"; }
     }
 }

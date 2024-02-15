@@ -1,21 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ПР8.Гладиаторы
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
             Game game = new Game();
-            BattleSystem battleSystem = new BattleSystem(game);
+            BattleSystem battleSystem = new BattleSystem();
 
             game.HireGladiator();
             game.VisitTheStore();
-            battleSystem.StartBattle();
+            battleSystem.EnterTheArena();
+            game.HealGladiator();
 
             Console.ReadKey();
         }
