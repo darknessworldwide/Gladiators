@@ -5,14 +5,11 @@ namespace ПР8.Гладиаторы
 {
     class BattleSystem : Game
     {
-        List<Gladiator> myGladiators;
         List<Gladiator> opponents;
         List<Beast> beasts;
 
         internal BattleSystem()
         {
-            myGladiators = MyGladiators;
-
             opponents = new List<Gladiator>()
             {
                 new Gladiator("Максимус Безжалостный"),
@@ -107,15 +104,15 @@ namespace ПР8.Гладиаторы
                 Console.WriteLine($"Оппонент {opponent.Name} выиграл\n");
 
                 myGladiators.Remove(myGladiator);
-                Glory -= 10;
+                glory -= 10;
                 opponent.Health = 100;
             }
             else
             {
                 Console.WriteLine($"Гладиатор {myGladiator.Name} выиграл!\n");
 
-                Glory += 15;
-                Money += 10;
+                glory += 15;
+                money += 10;
             }
         }
 
@@ -135,15 +132,15 @@ namespace ПР8.Гладиаторы
                 Console.WriteLine($"{beast.Name} выиграл\n");
 
                 myGladiators.Remove(myGladiator);
-                Glory -= 10;
+                glory -= 10;
                 beast.Health = 100;
             }
             else
             {
                 Console.WriteLine($"Гладиатор {myGladiator.Name} выиграл!\n");
 
-                Glory += 15;
-                Money += 10;
+                glory += 15;
+                money += 10;
             }
         }
 
