@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ПР8.Гладиаторы
+﻿namespace ПР8.Гладиаторы
 {
-    internal class Beast
+    class Beast
     {
         internal string Name { get; }
         internal double Health { get; set; }
@@ -19,9 +13,6 @@ namespace ПР8.Гладиаторы
             Damage = damage;
         }
 
-        internal string Info()
-        {
-            return $"{Name}, урон = {Damage}";
-        }
+        internal string Info() { return $"{Name}, урон = {Damage}"; }
     }
 }

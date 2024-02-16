@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ПР8.Гладиаторы
 {
-    internal class Store
+    class Store
     {
         internal Armor[] Armors { get; }
         internal Weapon[] Weapons { get; }
@@ -15,26 +11,25 @@ namespace ПР8.Гладиаторы
         {
             Armors = new Armor[]
             {
-                new Armor("Кожаная броня", 70, 1.3),
-                new Armor("Кольчуга", 90, 1.6),
-                new Armor("Бригантина", 100, 1.7),
-                new Armor("Пластинчатый доспех", 120, 1.8),
-                new Armor("Латы", 180, 2.2)
+                new Armor("Кожаная броня", 1.3, 70),
+                new Armor("Кольчуга", 1.6, 90),
+                new Armor("Бригантина", 1.7, 100),
+                new Armor("Пластинчатый доспех", 1.8, 120),
+                new Armor("Латы", 2.2, 180)
             };
 
             Weapons = new Weapon[]
             {
-                new Weapon("Палица", 25, 45),
-                new Weapon("Клинок с кинжалом", 28, 55),
-                new Weapon("Копье", 35, 60),
-                new Weapon("Алебарда", 40, 70),
-                new Weapon("Молот бога", 50, 100)
+                new Weapon("Палица", 45, 25),
+                new Weapon("Клинок с кинжалом", 55, 28),
+                new Weapon("Копье", 60, 35),
+                new Weapon("Алебарда", 70, 40),
+                new Weapon("Молот бога", 100, 50)
             };
         }
 
         internal void ShowArmors()
         {
-            Console.WriteLine("Доспехи:\n");
             for (int i = 0; i < Armors.Length; i++)
             {
                 Console.WriteLine($"{i + 1}) {Armors[i].Info()}. Цена: {Armors[i].Price} монет");
@@ -44,7 +39,6 @@ namespace ПР8.Гладиаторы
 
         internal void ShowWeapons()
         {
-            Console.WriteLine("Оружия:\n");
             for (int i = 0; i < Weapons.Length; i++)
             {
                 Console.WriteLine($"{i + 1}) {Weapons[i].Info()}. Цена: {Weapons[i].Price} монет");

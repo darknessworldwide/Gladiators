@@ -1,27 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ПР8.Гладиаторы
+﻿namespace ПР8.Гладиаторы
 {
-    internal class Armor
+    class Armor
     {
         internal string Name { get; }
-        internal int Price { get; }
         internal double Protection { get; }
+        internal int Price { get; }
 
-        internal Armor(string name, int price, double protection)
+        internal Armor(string name, double protection, int price)
         {
             Name = name;
-            Price = price;
             Protection = protection;
+            Price = price;
         }
 
-        internal string Info()
-        {
-            return $"{Name}, множитель защиты = {Protection}";
-        }
+        internal string Info() { return $"{Name}, множитель защиты = {Protection}"; }
     }
 }
