@@ -3,13 +3,16 @@ using System.Collections.Generic;
 
 namespace ПР8.Гладиаторы
 {
-    class BattleSystem : Game
+    class BattleSystem
     {
+        Game game;
         List<Gladiator> opponents;
         List<Beast> beasts;
 
-        internal BattleSystem()
+        internal BattleSystem(Game game)
         {
+            this.game = game;
+
             opponents = new List<Gladiator>()
             {
                 new Gladiator("Максимус Безжалостный"),
@@ -39,20 +42,20 @@ namespace ПР8.Гладиаторы
                 {
                     case "1":
                         Console.WriteLine("Выберите своего гладиатора:\n");
-                        ShowGladiators(myGladiators);
+                        game.ShowGladiators(game.MyGladiators);
 
-                        gladiatorOption = GetOption(myGladiators.Count);
+                        gladiatorOption = game.GetOption(game.MyGladiators.Count);
 
-                        if (gladiatorOption == myGladiators.Count + 1) return;
+                        if (gladiatorOption == game.MyGladiators.Count + 1) return;
 
                         Console.WriteLine("Выберите противника:");
-                        ShowGladiators(opponents);
+                        game.ShowGladiators(opponents);
 
-                        int opponentOption = GetOption(opponents.Count);
+                        int opponentOption = game.GetOption(opponents.Count);
 
                         if (opponentOption == opponents.Count + 1) return;
 
-                        myGladiator = myGladiators[gladiatorOption - 1];
+                        myGladiator = game.MyGladiators[gladiatorOption - 1];
                         Gladiator opponent = opponents[opponentOption - 1];
 
                         Console.WriteLine($"Битва начинается: {myGladiator.Name} vs {opponent.Name}\n");
@@ -61,18 +64,18 @@ namespace ПР8.Гладиаторы
 
                     case "2":
                         Console.WriteLine("Выберите своего гладиатора:\n");
-                        ShowGladiators(myGladiators);
+                        game.ShowGladiators(game.MyGladiators);
 
-                        gladiatorOption = GetOption(myGladiators.Count);
+                        gladiatorOption = game.GetOption(game.MyGladiators.Count);
 
                         Console.WriteLine("Выберите зверя:");
                         ShowBeasts();
 
-                        int beastOption = GetOption(beasts.Count);
+                        int beastOption = game.GetOption(beasts.Count);
 
                         if (beastOption == beasts.Count + 1) return;
 
-                        myGladiator = myGladiators[gladiatorOption - 1];
+                        myGladiator = game.MyGladiators[gladiatorOption - 1];
                         Beast beast = beasts[beastOption - 1];
 
                         Console.WriteLine($"Битва начинается: {myGladiator.Name} vs {beast.Name}\n");
@@ -103,16 +106,16 @@ namespace ПР8.Гладиаторы
             {
                 Console.WriteLine($"Оппонент {opponent.Name} выиграл\n");
 
-                myGladiators.Remove(myGladiator);
-                glory -= 10;
+                game.MyGladiators.Remove(myGladiator);
+                game.Glory -= 10;
                 opponent.Health = 100;
             }
             else
             {
                 Console.WriteLine($"Гладиатор {myGladiator.Name} выиграл!\n");
 
-                glory += 15;
-                money += 10;
+                game.Glory += 15;
+                game.Money += 10;
             }
         }
 
@@ -131,16 +134,16 @@ namespace ПР8.Гладиаторы
             {
                 Console.WriteLine($"{beast.Name} выиграл\n");
 
-                myGladiators.Remove(myGladiator);
-                glory -= 10;
+                game.MyGladiators.Remove(myGladiator);
+                game.Glory -= 10;
                 beast.Health = 100;
             }
             else
             {
                 Console.WriteLine($"Гладиатор {myGladiator.Name} выиграл!\n");
 
-                glory += 15;
-                money += 10;
+                game.Glory += 15;
+                game.Money += 10;
             }
         }
 

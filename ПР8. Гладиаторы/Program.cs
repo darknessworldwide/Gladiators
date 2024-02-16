@@ -7,9 +7,9 @@ namespace ПР8.Гладиаторы
         static void Main(string[] args)
         {
             Game game = new Game();
-            game.HireGladiator();
+            BattleSystem battleSystem = new BattleSystem(game);
 
-            BattleSystem battleSystem = new BattleSystem();
+            game.HireGladiator();
             battleSystem.EnterTheArena();
 
             Console.ReadKey();
