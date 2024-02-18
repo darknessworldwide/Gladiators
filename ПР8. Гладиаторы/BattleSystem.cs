@@ -22,8 +22,8 @@ namespace ПР8.Гладиаторы
             beasts = new Beast[]
             {
                 new Beast("Волк", 100, 20),
-                new Beast("Лев", 150, 25),
-                new Beast("Тигр", 200, 30),
+                new Beast("Тигр", 150, 25),
+                new Beast("Лев", 200, 30),
                 new Beast("Медведь", 250, 35)
             };
         }

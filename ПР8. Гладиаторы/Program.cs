@@ -14,7 +14,7 @@ namespace ПР8.Гладиаторы
             while (!flag)
             {
                 Console.WriteLine($"Монеты: {game.Money} Слава: {game.Glory}\n");
-                Console.WriteLine($"1) Сразиться на арене\n2) Зайти в оружейную лавку\n3) Вылечить гладиаторов\n4) Нанять гладиаторов\n\n5) Выйти из игры");
+                Console.WriteLine($"1) Сразиться на арене\n2) Зайти в оружейную лавку\n3) Вылечить гладиаторов\n4) Нанять гладиаторов\n5) Мои гладиаторы\n\n6) Выйти из игры");
 
                 switch (Console.ReadLine())
                 {
@@ -31,6 +31,10 @@ namespace ПР8.Гладиаторы
                         game.HireGladiator();
                         break;
                     case "5":
+                        game.ShowMyGladiators();
+                        Console.ReadLine();
+                        break;
+                    case "6":
                         flag = true;
                         break;
                     default:
