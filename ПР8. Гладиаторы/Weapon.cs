@@ -13,6 +13,6 @@
             Price = price;
         }
 
-        internal string Info() { return $"{Name}, урон = {Damage}"; }
+        internal string Info() { return $"{Name}    Урон: {Damage}"; }
     }
 }

@@ -9,10 +9,36 @@ namespace ПР8.Гладиаторы
             Game game = new Game();
             BattleSystem battleSystem = new BattleSystem(game);
 
-            game.HireGladiator();
-            battleSystem.EnterTheArena();
+            bool flag = false;
 
-            Console.ReadKey();
+            while (!flag)
+            {
+                Console.Clear();
+                Console.WriteLine($"Монеты: {game.Money}\tСлава: {game.Glory}\n");
+                Console.WriteLine($"1) Сразиться на арене\n2) Зайти в оружейную лавку\n3) Вылечить гладиаторов\n4) Нанять гладиаторов\n\n5) Выйти из игры\n");
+
+                switch (Console.ReadLine())
+                {
+                    case "1":
+                        battleSystem.EnterTheArena();
+                        break;
+                    case "2":
+                        game.VisitTheStore();
+                        break;
+                    case "3":
+                        game.HealGladiator();
+                        break;
+                    case "4":
+                        game.HireGladiator();
+                        break;
+                    case "5":
+                        flag = true;
+                        break;
+                    default:
+                        Console.WriteLine("Такого выбора нет! Попробуйте еще раз\n");
+                        break;
+                }
+            }
         }
     }
 }

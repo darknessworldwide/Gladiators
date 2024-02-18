@@ -32,7 +32,7 @@ namespace ПР8.Гладиаторы
         {
             for (int i = 0; i < Armors.Length; i++)
             {
-                Console.WriteLine($"{i + 1}) {Armors[i].Info()}. Цена: {Armors[i].Price} монет");
+                Console.WriteLine($"{i + 1}) {Armors[i].Info()}    Цена: {Armors[i].Price} монет");
             }
             Console.WriteLine($"{Armors.Length + 1}) Вернуться назад\n");
         }
@@ -41,7 +41,7 @@ namespace ПР8.Гладиаторы
         {
             for (int i = 0; i < Weapons.Length; i++)
             {
-                Console.WriteLine($"{i + 1}) {Weapons[i].Info()}. Цена: {Weapons[i].Price} монет");
+                Console.WriteLine($"{i + 1}) {Weapons[i].Info()}    Цена: {Weapons[i].Price} монет");
             }
             Console.WriteLine($"{Weapons.Length + 1}) Вернуться назад\n");
         }

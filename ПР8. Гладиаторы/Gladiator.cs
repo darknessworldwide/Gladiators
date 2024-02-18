@@ -15,6 +15,6 @@
             Weapon = new Weapon("Кулаки", 10, 0);
         }
 
-        internal string Info() { return $"{Name}, {Health}HP\n   Доспехи: {Armor.Info()}\n   Оружие: {Weapon.Info()}"; }
+        internal string Info() { return $"{Name}\nДоспехи: {Armor.Info()}\nОружие: {Weapon.Info()}"; }
     }
 }
