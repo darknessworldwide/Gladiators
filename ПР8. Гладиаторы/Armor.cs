@@ -13,6 +13,6 @@
             Price = price;
         }
 
-        internal string Info() { return $"{Name}    Множитель защиты: {Protection}"; }
+        internal string Info() { return $"{Name}, множитель защиты: {Protection}"; }
     }
 }

@@ -13,9 +13,8 @@ namespace ПР8.Гладиаторы
 
             while (!flag)
             {
-                Console.Clear();
-                Console.WriteLine($"Монеты: {game.Money}\tСлава: {game.Glory}\n");
-                Console.WriteLine($"1) Сразиться на арене\n2) Зайти в оружейную лавку\n3) Вылечить гладиаторов\n4) Нанять гладиаторов\n\n5) Выйти из игры\n");
+                Console.WriteLine($"Монеты: {game.Money} Слава: {game.Glory}\n");
+                Console.WriteLine($"1) Сразиться на арене\n2) Зайти в оружейную лавку\n3) Вылечить гладиаторов\n4) Нанять гладиаторов\n\n5) Выйти из игры");
 
                 switch (Console.ReadLine())
                 {

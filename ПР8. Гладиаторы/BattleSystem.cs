@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 
 namespace ПР8.Гладиаторы
 {
@@ -33,7 +32,7 @@ namespace ПР8.Гладиаторы
         {
             while (true)
             {
-                Console.WriteLine("1) Гладиатор vs Гладиатор\n2) Гладиатор vs Зверь\n3) Покинуть стадион\n");
+                Console.WriteLine("1) Гладиатор vs Гладиатор\n2) Гладиатор vs Зверь\n3) Покинуть стадион");
 
                 int gladiatorOption;
                 Gladiator myGladiator;
@@ -85,7 +84,7 @@ namespace ПР8.Гладиаторы
                     case "3": return;
 
                     default:
-                        Console.WriteLine("Такого выбора нет! Попробуйте еще раз");
+                        Console.WriteLine("Такого выбора нет! Попробуйте еще раз\n");
                         break;
                 }
             }
@@ -106,6 +105,8 @@ namespace ПР8.Гладиаторы
                 myGladiator.Health -= enemyDamage;
                 if (myGladiator.Health <= 0) break;
             }
+
+            Console.WriteLine();
 
             if (myGladiator.Health <= 0)
             {
@@ -139,6 +140,8 @@ namespace ПР8.Гладиаторы
                 if (myGladiator.Health <= 0) break;
             }
 
+            Console.WriteLine();
+
             if (myGladiator.Health <= 0)
             {
                 Console.WriteLine($"{beast.Name} выиграл\n");
@@ -162,7 +165,7 @@ namespace ПР8.Гладиаторы
             {
                 Console.WriteLine($"{i + 1}) {opponents[i].Info()}\n");
             }
-            Console.WriteLine($"{opponents.Length + 1}) Вернуться назад\n");
+            Console.WriteLine($"\n{opponents.Length + 1}) Вернуться назад");
         }
 
         void ShowBeasts()
@@ -171,7 +174,7 @@ namespace ПР8.Гладиаторы
             {
                 Console.WriteLine($"{i + 1}) {beasts[i].Info()}");
             }
-            Console.WriteLine($"{beasts.Length + 1}) Вернуться назад\n");
+            Console.WriteLine($"\n{beasts.Length + 1}) Вернуться назад");
         }
     }
 }

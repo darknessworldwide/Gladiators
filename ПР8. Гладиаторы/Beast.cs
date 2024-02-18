@@ -13,6 +13,6 @@
             Damage = damage;
         }
 
-        internal string Info() { return $"{Name}    Здоровье: [{Health}]    Урон: {Damage}"; }
+        internal string Info() { return $"{Name}, здоровье: {Health}, урон: {Damage}"; }
     }
 }

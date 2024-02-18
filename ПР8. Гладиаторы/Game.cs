@@ -34,7 +34,7 @@ namespace ПР8.Гладиаторы
         {
             while (true)
             {
-                Console.WriteLine($"Какого гладиатора нанять? У вас {Money} монет\n");
+                Console.WriteLine($"Какого гладиатора нанять?\n");
                 ShowHiredGladiators();
 
                 int option = GetOption(hiredGladiators.Length);
@@ -56,7 +56,7 @@ namespace ПР8.Гладиаторы
         {
             while (true)
             {
-                Console.WriteLine($"Какого гладиатора исцелить? У вас {Money} монет\n");
+                Console.WriteLine($"Какого гладиатора вылечить?\n");
                 ShowMyGladiators();
 
                 int option = GetOption(MyGladiators.Count);
@@ -70,7 +70,7 @@ namespace ПР8.Гладиаторы
 
                 Money -= cost;
                 myGladiator.Health = 100;
-                Console.WriteLine($"Вы исцелили гладиатора {myGladiator.Name}!\n");
+                Console.WriteLine($"Вы вылечили гладиатора {myGladiator.Name}!\n");
             }
         }
 
@@ -78,8 +78,7 @@ namespace ПР8.Гладиаторы
         {
             while (true)
             {
-                Console.WriteLine($"У вас {Money} монет");
-                Console.WriteLine($"1) Выбрать доспехи\n2) Выбрать оружие\n3) Покинуть оружейную лавку\n");
+                Console.WriteLine($"1) Выбрать доспехи\n2) Выбрать оружие\n3) Покинуть оружейную лавку");
 
                 int gladiatorOption;
 
@@ -120,7 +119,7 @@ namespace ПР8.Гладиаторы
                     case "3": return;
 
                     default:
-                        Console.WriteLine("Такого выбора нет! Попробуйте еще раз\n");
+                        Console.WriteLine("Такого выбора нет! Попробуйте еще раз");
                         break;
                 }
             }
@@ -160,7 +159,7 @@ namespace ПР8.Гладиаторы
             {
                 if (!int.TryParse(Console.ReadLine(), out int option) || option < 1 || option > len + 1)
                 {
-                    Console.WriteLine("Такого выбора нет! Попробуйте еще раз\n");
+                    Console.WriteLine("Такого выбора нет! Попробуйте еще раз");
                 }
                 else { return option; }
             }
@@ -172,7 +171,7 @@ namespace ПР8.Гладиаторы
             {
                 Console.WriteLine($"{i + 1}) {MyGladiators[i].Info()}\nЗдоровье: [{MyGladiators[i].Health}/100]\n");
             }
-            Console.WriteLine($"{MyGladiators.Count + 1}) Вернуться назад\n");
+            Console.WriteLine($"\n{MyGladiators.Count + 1}) Вернуться назад");
         }
 
         void ShowHiredGladiators()
@@ -181,7 +180,7 @@ namespace ПР8.Гладиаторы
             {
                 Console.WriteLine($"{i + 1}) {hiredGladiators[i].Info()}\n");
             }
-            Console.WriteLine($"{hiredGladiators.Length + 1}) Вернуться назад\n");
+            Console.WriteLine($"\n{hiredGladiators.Length + 1}) Вернуться назад");
         }
     }
 }
