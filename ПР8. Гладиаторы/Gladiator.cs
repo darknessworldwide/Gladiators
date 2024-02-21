@@ -15,6 +15,6 @@
             Weapon = new Weapon("Кулаки", 10, 0);
         }
 
-        internal string Info() { return $"{Name}\nДоспехи: {Armor.Info()}\nОружие: {Weapon.Info()}"; }
+        public override string ToString() { return $"{Name}\nДоспехи: {Armor}\nОружие: {Weapon}"; }
     }
 }

@@ -13,6 +13,6 @@
             Price = price;
         }
 
-        internal string Info() { return $"{Name}, урон: {Damage}"; }
+        public override string ToString() { return $"{Name}, урон: {Damage}"; }
     }
 }

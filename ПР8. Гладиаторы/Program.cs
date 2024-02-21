@@ -9,12 +9,12 @@ namespace ПР8.Гладиаторы
             Game game = new Game();
             BattleSystem battleSystem = new BattleSystem(game);
 
-            bool flag = false;
+            bool stop = false;
 
-            while (!flag)
+            while (!stop)
             {
                 Console.WriteLine($"Монеты: {game.Money} Слава: {game.Glory}\n");
-                Console.WriteLine($"1) Сразиться на арене\n2) Зайти в оружейную лавку\n3) Вылечить гладиаторов\n4) Нанять гладиаторов\n5) Мои гладиаторы\n\n6) Выйти из игры");
+                Console.WriteLine($"1) Сразиться на арене\n2) Зайти в оружейную лавку\n3) Вылечить гладиаторов\n4) Нанять гладиаторов\n\n5) Выйти из игры");
 
                 switch (Console.ReadLine())
                 {
@@ -25,17 +25,13 @@ namespace ПР8.Гладиаторы
                         game.VisitTheStore();
                         break;
                     case "3":
-                        game.HealGladiator();
+                        game.HealGladiators();
                         break;
                     case "4":
-                        game.HireGladiator();
+                        game.HireGladiators();
                         break;
                     case "5":
-                        game.ShowMyGladiators();
-                        Console.ReadLine();
-                        break;
-                    case "6":
-                        flag = true;
+                        stop = true;
                         break;
                     default:
                         Console.WriteLine("Такого выбора нет! Попробуйте еще раз\n");

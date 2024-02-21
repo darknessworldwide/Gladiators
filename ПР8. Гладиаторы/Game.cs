@@ -7,9 +7,9 @@ namespace ПР8.Гладиаторы
     {
         internal int Money { get; set; }
         internal int Glory { get; set; }
-        Store store;
         internal List<Gladiator> MyGladiators { get; set; }
         Gladiator[] hiredGladiators;
+        Store store;
 
         internal Game()
         {
@@ -30,7 +30,7 @@ namespace ПР8.Гладиаторы
             };
         }
 
-        internal void HireGladiator()
+        internal void HireGladiators()
         {
             while (true)
             {
@@ -52,7 +52,7 @@ namespace ПР8.Гладиаторы
             }
         }
 
-        internal void HealGladiator()
+        internal void HealGladiators()
         {
             while (true)
             {
@@ -63,10 +63,10 @@ namespace ПР8.Гладиаторы
 
                 if (option == MyGladiators.Count + 1) return;
 
-                int cost = 100;
-                if (NotEnoughMoney(cost)) return;
-
                 Gladiator myGladiator = MyGladiators[option - 1];
+
+                int cost = (int)Math.Ceiling(100 - myGladiator.Health);
+                if (NotEnoughMoney(cost)) return;
 
                 Money -= cost;
                 myGladiator.Health = 100;
@@ -119,7 +119,7 @@ namespace ПР8.Гладиаторы
                     case "3": return;
 
                     default:
-                        Console.WriteLine("Такого выбора нет! Попробуйте еще раз");
+                        Console.WriteLine("Такого выбора нет! Попробуйте еще раз\n");
                         break;
                 }
             }
@@ -169,7 +169,7 @@ namespace ПР8.Гладиаторы
         {
             for (int i = 0; i < MyGladiators.Count; i++)
             {
-                Console.WriteLine($"{i + 1}) {MyGladiators[i].Info()}\nЗдоровье: [{MyGladiators[i].Health}/100]\n");
+                Console.WriteLine($"{i + 1}) {MyGladiators[i]}\nЗдоровье: [{MyGladiators[i].Health}/100]\n");
             }
             Console.WriteLine($"\n{MyGladiators.Count + 1}) Вернуться назад");
         }
@@ -178,7 +178,7 @@ namespace ПР8.Гладиаторы
         {
             for (int i = 0; i < hiredGladiators.Length; i++)
             {
-                Console.WriteLine($"{i + 1}) {hiredGladiators[i].Info()}\n");
+                Console.WriteLine($"{i + 1}) {hiredGladiators[i]}\n");
             }
             Console.WriteLine($"\n{hiredGladiators.Length + 1}) Вернуться назад");
         }

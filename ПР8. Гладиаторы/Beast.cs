@@ -13,6 +13,6 @@
             Damage = damage;
         }
 
-        internal string Info() { return $"{Name}, здоровье: {Health}, урон: {Damage}"; }
+        public override string ToString() { return $"{Name}, здоровье: {Health}, урон: {Damage}"; }
     }
 }
