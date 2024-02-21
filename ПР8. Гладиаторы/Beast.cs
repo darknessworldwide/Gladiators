@@ -6,13 +6,13 @@
         internal double Health { get; set; }
         internal double Damage { get; }
 
-        internal Beast(string name, double damage)
+        internal Beast(string name, double health, double damage)
         {
             Name = name;
-            Health = 100;
+            Health = health;
             Damage = damage;
         }
 
-        internal string Info() { return $"{Name}, урон = {Damage}"; }
+        public override string ToString() { return $"{Name}, здоровье: {Health}, урон: {Damage}"; }
     }
 }
