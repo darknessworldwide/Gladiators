@@ -42,7 +42,7 @@ namespace ПР8.Гладиаторы
                 if (option == hiredGladiators.Length + 1) return;
 
                 int cost = 300;
-                if (NotEnoughMoney(cost)) return;
+                if (NotEnoughMoney(cost)) continue;
 
                 Gladiator newGladiator = hiredGladiators[option - 1];
 
@@ -65,8 +65,14 @@ namespace ПР8.Гладиаторы
 
                 Gladiator myGladiator = MyGladiators[option - 1];
 
+                if (myGladiator.Health == 100)
+                {
+                    Console.WriteLine($"Гладиатор {myGladiator.Name} и так здоров!\n");
+                    continue;
+                }    
+
                 int cost = (int)Math.Ceiling(100 - myGladiator.Health);
-                if (NotEnoughMoney(cost)) return;
+                if (NotEnoughMoney(cost)) continue;
 
                 Money -= cost;
                 myGladiator.Health = 100;
@@ -171,7 +177,7 @@ namespace ПР8.Гладиаторы
             {
                 Console.WriteLine($"{i + 1}) {MyGladiators[i]}\nЗдоровье: [{MyGladiators[i].Health}/100]\n");
             }
-            Console.WriteLine($"\n{MyGladiators.Count + 1}) Вернуться назад");
+            Console.WriteLine($"{MyGladiators.Count + 1}) Вернуться назад");
         }
 
         void ShowHiredGladiators()
@@ -180,7 +186,7 @@ namespace ПР8.Гладиаторы
             {
                 Console.WriteLine($"{i + 1}) {hiredGladiators[i]}\n");
             }
-            Console.WriteLine($"\n{hiredGladiators.Length + 1}) Вернуться назад");
+            Console.WriteLine($"{hiredGladiators.Length + 1}) Вернуться назад");
         }
     }
 }

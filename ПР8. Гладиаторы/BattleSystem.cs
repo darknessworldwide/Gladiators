@@ -45,14 +45,14 @@ namespace ПР8.Гладиаторы
 
                         gladiatorOption = game.GetOption(game.MyGladiators.Count);
 
-                        if (gladiatorOption == game.MyGladiators.Count + 1) return;
+                        if (gladiatorOption == game.MyGladiators.Count + 1) break;
 
                         Console.WriteLine("Выберите противника:\n");
                         ShowOpponents();
 
                         int opponentOption = game.GetOption(opponents.Length);
 
-                        if (opponentOption == opponents.Length + 1) return;
+                        if (opponentOption == opponents.Length + 1) break;
 
                         myGladiator = game.MyGladiators[gladiatorOption - 1];
                         Gladiator opponent = opponents[opponentOption - 1];
@@ -67,14 +67,14 @@ namespace ПР8.Гладиаторы
 
                         gladiatorOption = game.GetOption(game.MyGladiators.Count);
 
-                        if (gladiatorOption == game.MyGladiators.Count + 1) return;
+                        if (gladiatorOption == game.MyGladiators.Count + 1) break;
 
                         Console.WriteLine("Выберите зверя:");
                         ShowBeasts();
 
                         int beastOption = game.GetOption(beasts.Length);
 
-                        if (beastOption == beasts.Length + 1) return;
+                        if (beastOption == beasts.Length + 1) break;
 
                         myGladiator = game.MyGladiators[gladiatorOption - 1];
                         Beast beast = beasts[beastOption - 1];
@@ -172,7 +172,7 @@ namespace ПР8.Гладиаторы
             {
                 Console.WriteLine($"{i + 1}) {opponents[i]}\n");
             }
-            Console.WriteLine($"\n{opponents.Length + 1}) Вернуться назад");
+            Console.WriteLine($"{opponents.Length + 1}) Вернуться назад");
         }
 
         void ShowBeasts()
@@ -181,7 +181,7 @@ namespace ПР8.Гладиаторы
             {
                 Console.WriteLine($"{i + 1}) {beasts[i]}");
             }
-            Console.WriteLine($"\n{beasts.Length + 1}) Вернуться назад");
+            Console.WriteLine($"{beasts.Length + 1}) Вернуться назад");
         }
     }
 }

@@ -52,7 +52,7 @@ namespace ПР8.Гладиаторы
             {
                 Console.WriteLine($"{i + 1}) {Armors[i]}. Цена: {Armors[i].Price} монет");
             }
-            Console.WriteLine($"\n{Armors.Length + 1}) Вернуться назад");
+            Console.WriteLine($"{Armors.Length + 1}) Вернуться назад");
         }
 
         internal void ShowWeapons()
@@ -61,7 +61,7 @@ namespace ПР8.Гладиаторы
             {
                 Console.WriteLine($"{i + 1}) {Weapons[i]}. Цена: {Weapons[i].Price} монет");
             }
-            Console.WriteLine($"\n{Weapons.Length + 1}) Вернуться назад");
+            Console.WriteLine($"{Weapons.Length + 1}) Вернуться назад");
         }
     }
 }
