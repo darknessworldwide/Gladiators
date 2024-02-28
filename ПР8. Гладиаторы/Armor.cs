@@ -13,6 +13,6 @@
             Price = price;
         }
 
-        public override string ToString() { return $"{Name}, множитель защиты: {Protection}"; }
+        public override string ToString() { return $"{Name} | Множитель защиты: {Protection}"; }
     }
 }

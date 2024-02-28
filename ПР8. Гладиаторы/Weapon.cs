@@ -13,6 +13,6 @@
             Price = price;
         }
 
-        public override string ToString() { return $"{Name}, урон: {Damage}"; }
+        public override string ToString() { return $"{Name} | Урон: {Damage}"; }
     }
 }
