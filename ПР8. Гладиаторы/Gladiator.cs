@@ -15,6 +15,14 @@
             Weapon = new Weapon("Кулаки", 10, 0);
         }
 
-        public override string ToString() { return $"{Name}\nДоспехи: {Armor}\nОружие: {Weapon}"; }
+        internal Gladiator(string name, Armor armor, Weapon weapon)
+        {
+            Name = name;
+            Health = 100;
+            Armor = armor;
+            Weapon = weapon;
+        }
+
+        public override string ToString() { return $"{Name} | Здоровье: [{Health}/100]\nДоспехи: {Armor}\nОружие: {Weapon}"; }
     }
 }

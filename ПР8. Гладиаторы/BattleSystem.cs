@@ -1,30 +1,31 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace ПР8.Гладиаторы
 {
     class BattleSystem
     {
         Game game;
-        Gladiator[] opponents;
+        Opponent[] opponents;
         Beast[] beasts;
 
         internal BattleSystem(Game game)
         {
             this.game = game;
 
-            opponents = new Gladiator[]
+            opponents = new Opponent[]
             {
-                new Gladiator("Максимус Безжалостный"),
-                new Gladiator("Валерий Череполом"),
-                new Gladiator("Артемий Молотильщик")
+                new Opponent("Максимус Безжалостный", new Armor("Рваная кольчуга", 1.4, 60), new Weapon("Ржавый клинок", 30, 60), 30, 50),
+                new Opponent("Валерий Череполом", new Armor("Бригантина", 1.9, 110), new Weapon("Рапира", 70, 130), 50, 75),
+                new Opponent("Артемий Молотильщик", new Armor("Латы", 2.7, 190), new Weapon("Палаш Погибели", 120, 210), 100, 200),
             };
 
             beasts = new Beast[]
             {
-                new Beast("Волк", 100, 20),
-                new Beast("Тигр", 150, 25),
-                new Beast("Лев", 200, 30),
-                new Beast("Медведь", 250, 35)
+                new Beast("Волк", 200, 20, 25, 30),
+                new Beast("Тигр", 400, 30, 35, 40),
+                new Beast("Лев", 600, 40, 50, 60),
+                new Beast("Медведь", 1000, 50, 75, 100),
             };
         }
 
@@ -32,30 +33,28 @@ namespace ПР8.Гладиаторы
         {
             while (true)
             {
-                Console.WriteLine("1) Гладиатор vs Гладиатор\n2) Гладиатор vs Зверь\n3) Покинуть стадион");
-
                 int gladiatorOption;
                 Gladiator myGladiator;
+
+                Console.WriteLine("1) Гладиатор vs Гладиатор\n2) Гладиатор vs Зверь\n3) Покинуть стадион");
 
                 switch (Console.ReadLine())
                 {
                     case "1":
                         Console.WriteLine("Выберите своего гладиатора:\n");
                         game.ShowMyGladiators();
-
                         gladiatorOption = game.GetOption(game.MyGladiators.Count);
 
                         if (gladiatorOption == game.MyGladiators.Count + 1) break;
 
                         Console.WriteLine("Выберите противника:\n");
                         ShowOpponents();
-
                         int opponentOption = game.GetOption(opponents.Length);
 
                         if (opponentOption == opponents.Length + 1) break;
 
                         myGladiator = game.MyGladiators[gladiatorOption - 1];
-                        Gladiator opponent = opponents[opponentOption - 1];
+                        Opponent opponent = opponents[opponentOption - 1];
 
                         Console.WriteLine($"Битва начинается: {myGladiator.Name} vs {opponent.Name}\n");
                         Fight(myGladiator, opponent);
@@ -64,14 +63,12 @@ namespace ПР8.Гладиаторы
                     case "2":
                         Console.WriteLine("Выберите своего гладиатора:\n");
                         game.ShowMyGladiators();
-
                         gladiatorOption = game.GetOption(game.MyGladiators.Count);
 
                         if (gladiatorOption == game.MyGladiators.Count + 1) break;
 
                         Console.WriteLine("Выберите зверя:");
                         ShowBeasts();
-
                         int beastOption = game.GetOption(beasts.Length);
 
                         if (beastOption == beasts.Length + 1) break;
@@ -92,7 +89,7 @@ namespace ПР8.Гладиаторы
             }
         }
 
-        void Fight(Gladiator myGladiator, Gladiator opponent)
+        void Fight(Gladiator myGladiator, Opponent opponent)
         {
             double myDamage = Math.Round(myGladiator.Weapon.Damage / opponent.Armor.Protection, 1);
             double enemyDamage = Math.Round(opponent.Weapon.Damage / myGladiator.Armor.Protection, 1);
@@ -112,19 +109,20 @@ namespace ПР8.Гладиаторы
 
             if (myGladiator.Health <= 0)
             {
-                Console.WriteLine($"Оппонент {opponent.Name} выиграл");
+                Console.WriteLine($"Ваш гладиатор {myGladiator.Name} проиграл!");
 
                 game.MyGladiators.Remove(myGladiator);
                 game.Glory -= 10;
-                opponent.Health = 100;
             }
             else
             {
                 Console.WriteLine($"Ваш гладиатор {myGladiator.Name} выиграл!");
 
-                game.Glory += 15;
-                game.Money += 10;
+                game.Money += opponent.Money;
+                game.Glory += opponent.Glory;
             }
+
+            opponent.Health = 100;
 
             Console.WriteLine();
         }
@@ -149,19 +147,20 @@ namespace ПР8.Гладиаторы
 
             if (myGladiator.Health <= 0)
             {
-                Console.WriteLine($"{beast.Name} выиграл");
+                Console.WriteLine($"Ваш гладиатор {myGladiator.Name} проиграл!");
 
                 game.MyGladiators.Remove(myGladiator);
                 game.Glory -= 10;
-                beast.Health = defaultHealth;
             }
             else
             {
                 Console.WriteLine($"Ваш гладиатор {myGladiator.Name} выиграл!");
 
-                game.Glory += 15;
-                game.Money += 10;
+                game.Money += beast.Money;
+                game.Glory += beast.Glory;
             }
+
+            beast.Health = defaultHealth;
 
             Console.WriteLine();
         }
@@ -179,7 +178,7 @@ namespace ПР8.Гладиаторы
         {
             for (int i = 0; i < beasts.Length; i++)
             {
-                Console.WriteLine($"{i + 1}) {beasts[i]}");
+                Console.WriteLine($"{i + 1}) {beasts[i]}\n");
             }
             Console.WriteLine($"{beasts.Length + 1}) Вернуться назад");
         }

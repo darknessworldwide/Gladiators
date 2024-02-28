@@ -23,7 +23,7 @@ namespace ПР8.Гладиаторы
                 new Armor("Кольчуга с пластинами", 2.4, 160),
                 new Armor("Поврежденные латы", 2.6, 180),
                 new Armor("Латы", 2.7, 190),
-                new Armor("Доспех великого хранителя", 3.0, 250)
+                new Armor("Доспех великого хранителя", 3.0, 250),
             };
 
             Weapons = new Weapon[]
@@ -42,7 +42,7 @@ namespace ПР8.Гладиаторы
                 new Weapon("Экскалибур", 100, 180),
                 new Weapon("Клинок тьмы", 110, 200),
                 new Weapon("Палаш Погибели", 120, 210),
-                new Weapon("Молот бога", 130, 250)
+                new Weapon("Молот бога", 130, 250),
             };
         }
 
@@ -50,7 +50,7 @@ namespace ПР8.Гладиаторы
         {
             for (int i = 0; i < Armors.Length; i++)
             {
-                Console.WriteLine($"{i + 1}) {Armors[i]}. Цена: {Armors[i].Price} монет");
+                Console.WriteLine($"{i + 1}) {Armors[i]} | Цена: {Armors[i].Price} монет");
             }
             Console.WriteLine($"{Armors.Length + 1}) Вернуться назад");
         }
@@ -59,7 +59,7 @@ namespace ПР8.Гладиаторы
         {
             for (int i = 0; i < Weapons.Length; i++)
             {
-                Console.WriteLine($"{i + 1}) {Weapons[i]}. Цена: {Weapons[i].Price} монет");
+                Console.WriteLine($"{i + 1}) {Weapons[i]} | Цена: {Weapons[i].Price} монет");
             }
             Console.WriteLine($"{Weapons.Length + 1}) Вернуться назад");
         }
